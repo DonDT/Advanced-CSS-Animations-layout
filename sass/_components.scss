@@ -198,3 +198,114 @@
   text-align: center;
   padding: 2.5rem;
 }
+
+/// Galerry////
+
+.gallery {
+  display: flex;
+
+  &__photo {
+    width: 100%;
+    // This is to remove any white space under the image, so it should always be displayed as a block
+    display: block;
+  }
+}
+
+///// Overview //////
+
+.overview {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-grey-light-2);
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+    // As the size of this item within the flex container is increase, all the other items adjust their sizes to match this item's size.
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem;
+  }
+  &__stars {
+    //flex: 1;
+    // this is very importtant with flex box, it allows for automatic calculation of the items margin.
+    margin-right: auto;
+    // This is such that the stars aligned perfectly (vertically and horizontally) within their container.
+    display: flex;
+  }
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+  &__icon-location {
+    margin-right: 0.5rem;
+  }
+  &__location {
+    font-size: 1.2rem;
+
+    display: flex;
+    align-items: center;
+  }
+  &__rating {
+    background-color: var(--color-primary);
+    margin-left: 3rem;
+    color: white;
+    // making item takes the entire vh it has available
+
+    padding: 0 2.25rem;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__rating-count {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: -3px;
+  }
+}
+
+/// Button Inline ///
+
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+  font-size: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--color-grey-dark-1);
+  }
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
