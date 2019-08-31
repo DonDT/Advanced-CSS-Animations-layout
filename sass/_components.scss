@@ -286,8 +286,16 @@
   cursor: pointer;
   transition: all 0.2s;
 
+  & span {
+    margin-left: 3px;
+    transition: margin-left 0.2s;
+  }
+
   &:hover {
     color: var(--color-grey-dark-1);
+    span {
+      margin-left: 8px;
+    }
   }
   &:focus {
     outline: none;
@@ -307,5 +315,201 @@
   100% {
     transform: scale(1);
     box-shadow: none;
+  }
+}
+
+//// Paragraph ////
+
+// last of type applies to only the same type of the parent element
+.paragraph:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+//// List //////
+.list {
+  list-style: none;
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    flex: 0 0 50%;
+    margin-bottom: 0.7rem;
+  }
+  // another way of including the icon, as a before pseudo element.
+  &__item::before {
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.7rem;
+
+    //Older browsers
+    //background-image: url(../img/chevron-thin-right.svg);
+    //background-size: cover;
+
+    // newer browsers--masks
+    background-color: var(--color-primary);
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+}
+
+//// Recommend ////
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-dark-3);
+  display: flex;
+  align-items: center;
+
+  &__count {
+    margin-right: auto;
+  }
+  &__friends {
+  }
+  &__photo {
+    // removing the box-sizing border box, so as not to reduce the height of the image.
+    box-sizing: content-box;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &:not(:last-child) {
+      margin-right: -1.5rem;
+    }
+  }
+}
+
+/// Reviews //////
+.review {
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  padding: 3rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  // So the icon does not overflow
+  overflow: hidden;
+
+  &__text {
+    margin-bottom: 2rem;
+    z-index: 10;
+    // Z-index only works if one sets the position. This positioning, is such that the z-index should work.
+    position: relative;
+  }
+  &__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__photo {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+  }
+  &__user-box {
+    //margin-left: -7rem;
+    margin-right: auto;
+  }
+  &__user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  &__user-date {
+    font-size: 1rem;
+    color: var(--color-grey-dark-3);
+  }
+  &__rating {
+    color: var(--color-primary);
+    font-size: 2.2rem;
+    font-weight: 300;
+  }
+  &::before {
+    content: "\201C";
+    position: absolute;
+    top: -2.75rem;
+    left: -1rem;
+    font-size: 20rem;
+    color: var(--color-grey-light-2);
+    font-family: sans-serif;
+    line-height: 1;
+    z-index: 1;
+  }
+}
+
+//// Call to Action /////
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book-now {
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+}
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 200px;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  // hiding the text above the button, because it is outside and overflown.
+  overflow: hidden;
+
+  // to avoid repeating code, select every direct child.
+  & > * {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+  }
+
+  &__visible {
+    padding: 2rem 7.5rem;
+  }
+  &__invisible {
+    padding: 2rem 0;
+    position: absolute;
+    left: 0;
+    // -100% of it's parent element
+    top: -100%;
+  }
+  &:hover {
+    background-image: linear-gradient(
+      to left,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+  }
+
+  &:hover &__visible {
+    //100% of it's height
+    transform: translateY(100%);
+  }
+  &:hover &__invisible {
+    top: 0;
+  }
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
   }
 }
